@@ -8,10 +8,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigibody;
     private Vector3 change;
     private Animator animator;
+    private bool playerExists;
     void Start()
     {
         animator = GetComponent<Animator>();
         myRigibody = GetComponent<Rigidbody2D>();
+
+        if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
